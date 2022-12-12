@@ -1,71 +1,36 @@
-# Getting Started with Create React App
+### libraries
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- API: axios
+- Router: react-router-dom
+- State Management: @reduxjs/toolkit, react-redux
+- UI component : react-bootstrap / material-UI / mantine
 
-## Available Scripts
+### Folder structure
 
-In the project directory, you can run:
+- src
 
-### `npm start`
+  - component/:
+    - Dùng để tạo các common component, VD: Button, Header, Sidebar, ...
+    - Thường là tạo các component thiên về UI, không chứa các logic của ứng dụng như cal API,...
+  - module/:`module-name`/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    - Dùng để gom nhóm các component theo một chức năng hoặc một page.
+    - Các component này thường sẽ chứa logic của ứng dụng như là call API, redux, ...
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  - routers/
 
-### `npm test`
+    - Dùng để định nghĩa các tác vụ liên quan tới router.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  - services/
 
-### `npm run build`
+    - Dùng để chứa setup phương thức gọi API (axios) và các hàm xử lý với API
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - hooks/
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    - Dùng để viết các custom Hooks
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  - utils/
 
-### `npm run eject`
+    - Dùng để viết các hàm tái sử dụng
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-"# capstone__airbnb__trung-thi" 
+  - store.js: setup redux store
