@@ -1,0 +1,50 @@
+$fs-sm: 14px;
+
+li {
+  padding: 8px;
+  list-style-type: none;
+  h6 {
+    font-weight: bold;
+  }
+  a {
+    color: black;
+    text-decoration: none;
+    font-size: $fs-sm;
+  }
+}
+.footer {
+  background-color: gray;
+  &__container {
+    width: 92%;
+    margin: 0 auto;
+    .footer__content {
+      .footer__menu {
+        padding: 50px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .footer__copyright {
+        border-top: 1px solid black;
+        padding: 30px;
+        display: flex;
+        .copy__text {
+          span {
+            padding-left: 10px;
+            a {
+              text-decoration: none;
+              color: black;
+            }
+          }
+        }
+        .social {
+          span {
+            a {
+              text-decoration: none;
+              color: black;
+            }
+          }
+        }
+      }
+    }
+  }
+}
