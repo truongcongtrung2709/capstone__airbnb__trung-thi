@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Container, Dropdown, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import "./header.scss";
 import logo from "./airbnb.svg";
 
@@ -12,7 +12,7 @@ const Header = () => {
     <>
       <Navbar fixed="top">
         <div className="header__container">
-          <Navbar.Brand href="#" className="col-4">
+          <Navbar.Brand href="/" className="col-4">
             <img src={logo} alt="" width={102} height={32} />
           </Navbar.Brand>
           <Navbar.Collapse id="responsive-navbar-nav" className="col-8">
@@ -30,15 +30,21 @@ const Header = () => {
                 </Nav.Link>
               </div>
             </Nav>
-            <Nav className="me-auto login col-7">
+            <Nav className="me-auto end-nav col-7">
               <Nav.Link href="#">Cho thuê chỗ ở qua Airbnb</Nav.Link>
               <Nav.Link href="#">
                 <AiOutlineGlobal />
               </Nav.Link>
-              <Nav.Link href="#">
-                <HiMenu />
-                <RiAccountCircleFill />
-              </Nav.Link>
+              <Dropdown>
+                <Dropdown.Toggle>
+                  <HiMenu className="toggle" />
+                  <RiAccountCircleFill className="person" />
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="/signin">Đăng Nhập</Dropdown.Item>
+                  <Dropdown.Item href="/signup">Đăng Ký</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </Nav>
           </Navbar.Collapse>
         </div>

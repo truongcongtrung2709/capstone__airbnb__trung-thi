@@ -1,6 +1,8 @@
 $border: rgb(205, 205, 205);
+$border-bold: rgb(138, 138, 138);
 $fs-md: 14px;
 $fs-lg: 22px;
+$fs-xl: 25px;
 $f-black: black;
 
 .navbar {
@@ -28,7 +30,7 @@ $f-black: black;
 
         font-size: $fs-md;
 
-        padding: 5px 16px;
+        padding: 2px 16px;
         a {
           color: black;
           font-weight: 500;
@@ -61,7 +63,7 @@ $f-black: black;
         width: 1px;
       }
     }
-    .login {
+    .end-nav {
       justify-content: end;
       align-items: center;
       a:first-child {
@@ -82,6 +84,40 @@ $f-black: black;
         svg:last-child {
           font-size: 35px;
           color: gray;
+        }
+      }
+      .dropdown {
+        .dropdown-toggle {
+          background: white;
+          border: 1px solid $border;
+          border-radius: 30px;
+          display: flex;
+          justify-content: space-between;
+          text-align: center;
+          align-items: center;
+          .toggle {
+            color: $border-bold;
+            font-size: $fs-lg;
+          }
+          .person {
+            color: $border-bold;
+            font-size: $fs-xl;
+          }
+        }
+        .dropdown-toggle::after {
+          content: none;
+        }
+        .dropdown-menu {
+          left: -35px;
+          .dropdown-item {
+            border: none;
+            padding: 10px 10px;
+            font-weight: 400;
+            font-size: $fs-md;
+          }
+          .dropdown-item:hover {
+            border-radius: 20px;
+          }
         }
       }
     }
