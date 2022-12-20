@@ -1,0 +1,16 @@
+$pink: #ff385c;
+
+.signup {
+  padding-top: 160px;
+  padding-bottom: 160px;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 20px;
+  h2 {
+    font-weight: bold;
+
+    text-align: center;
+    color: $pink;
+  }
+}

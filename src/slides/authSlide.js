@@ -16,6 +16,15 @@ export const signin = createAsyncThunk("auth/signin", async (values) => {
     throw error;
   }
 });
+// signup action
+export const signup = createAsyncThunk("auth/signup", async (values) => {
+  try {
+    const data = await authAPI.signup(values);
+    return data.content;
+  } catch (error) {
+    throw error;
+  }
+});
 
 const authSlide = createSlice({
   name: "auth",
@@ -36,7 +45,16 @@ const authSlide = createSlice({
     builder.addCase(signin.rejected, (state, action) => {
       return { ...state, loading: false, error: action.error.message };
     });
+    builder.addCase(signup.pending, (state) => {
+      return { ...state, isLoading: true };
+    });
+    builder.addCase(signup.fulfilled, (state, action) => {
+      return { ...state, isLoading: false, myAcount: action.payload };
+    });
+    builder.addCase(signup.rejected, (state, action) => {
+      return { ...state, isLoading: false, myAcount: action.error.message };
+    });
   },
 });
-export const {logout} = authSlide.actions;
+export const { logout } = authSlide.actions;
 export default authSlide.reducer;

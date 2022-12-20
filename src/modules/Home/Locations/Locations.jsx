@@ -16,7 +16,6 @@ const Locations = () => {
       setLocations(data);
     })();
   }, []);
-  console.log(locations);
   return (
     <div className="locations">
       <div className="locations__container">

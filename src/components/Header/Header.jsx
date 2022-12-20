@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Dropdown, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import "./header.scss";
 import logo from "./airbnb.svg";
@@ -7,7 +7,38 @@ import { AiOutlineGlobal } from "react-icons/ai";
 import { HiMenu } from "react-icons/hi";
 import { RiAccountCircleFill } from "react-icons/ri";
 import { GrFormSearch } from "react-icons/gr";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../slides/authSlide";
 const Header = () => {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const [userInfo, setUserInfo] = useState([]);
+
+  const Logged = () => {
+    setUserInfo(user.user);
+
+    return (
+      <Dropdown.Menu>
+        <Dropdown.Item href="/">{userInfo.name}</Dropdown.Item>
+        <Dropdown.Item onClick={handleLogout}>Đăng Xuất</Dropdown.Item>
+        <hr />
+        <Dropdown.Item href="/signup">Đăng Ký</Dropdown.Item>
+      </Dropdown.Menu>
+    );
+  };
+
+  const Nonlogged = () => {
+    return (
+      <Dropdown.Menu>
+        <Dropdown.Item href="/signin">Đăng Nhập</Dropdown.Item>
+        <Dropdown.Item href="/signup">Đăng Ký</Dropdown.Item>
+      </Dropdown.Menu>
+    );
+  };
+  const handleLogout = () => {
+    dispatch(logout());
+    alert("Bạn đã đăng xuất");
+  };
   return (
     <>
       <Navbar fixed="top">
@@ -40,10 +71,7 @@ const Header = () => {
                   <HiMenu className="toggle" />
                   <RiAccountCircleFill className="person" />
                 </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item href="/signin">Đăng Nhập</Dropdown.Item>
-                  <Dropdown.Item href="/signup">Đăng Ký</Dropdown.Item>
-                </Dropdown.Menu>
+                {user ? <Logged /> : <Nonlogged />}
               </Dropdown>
             </Nav>
           </Navbar.Collapse>
