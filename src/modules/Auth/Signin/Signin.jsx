@@ -31,9 +31,11 @@ const Signin = () => {
     <div className="signin">
       <h2>ĐĂNG NHẬP</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="form-sign">
-        <div className="form-item">
-          <label>Email:</label>
+        <div className="form-item row">
+          <label className="email  col-4">Email</label>
           <input
+          placeholder="email..."
+          className="input-email col-8"
             type="text"
             {...register("email", {
               required: {
@@ -44,9 +46,11 @@ const Signin = () => {
           />
           {errors.email && <span>{errors.email.message}</span>}
         </div>
-        <div className="form-item">
-          <label>Password:</label>
+        <div className="form-item row">
+          <label className="password col-4">Password</label>
           <input
+          placeholder="password..."
+          className="input-password col-8"
             type="password"
             {...register("password", {
               required: {
@@ -62,6 +66,7 @@ const Signin = () => {
           {errors.password && <span>{errors.password.message}</span>}
         </div>
         <button 
+        className="btn-signin"
         disabled={loading}
         >Đăng Nhập</button>
         {error && <p>{error}</p>}
