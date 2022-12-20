@@ -16,7 +16,7 @@ const Header = () => {
             <img src={logo} alt="" width={102} height={32} />
           </Navbar.Brand>
           <Navbar.Collapse id="responsive-navbar-nav" className="col-8">
-            <Nav className="me-auto options col-5">
+            <Nav className="me-auto options col-6">
               <div className="options__title">
                 <Nav.Link href="#">Địa điểm bất kỳ</Nav.Link>
                 <span className="border"></span>
@@ -30,7 +30,7 @@ const Header = () => {
                 </Nav.Link>
               </div>
             </Nav>
-            <Nav className="me-auto end-nav col-7">
+            <Nav className="me-auto end-nav col-6">
               <Nav.Link href="#">Cho thuê chỗ ở qua Airbnb</Nav.Link>
               <Nav.Link href="#">
                 <AiOutlineGlobal />
