@@ -117,6 +117,9 @@ $f-black: black;
           }
           .dropdown-item:hover {
             border-radius: 20px;
+            background-color:#ff385c;
+            color: white;
+            transition: 0.2s linear ;
           }
         }
       }

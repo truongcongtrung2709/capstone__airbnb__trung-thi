@@ -69,7 +69,7 @@ const Signin = () => {
         className="btn-signin"
         disabled={loading}
         >Đăng Nhập</button>
-        {error && <p>{error}</p>}
+        {error && <p className="error-msg">{error}</p>}
       </form>
     </div>
   );
