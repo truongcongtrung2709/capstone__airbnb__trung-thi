@@ -18,7 +18,7 @@ const Header = () => {
 
     return (
       <Dropdown.Menu>
-        <Dropdown.Item href="/">{userInfo.name}</Dropdown.Item>
+        <Dropdown.Item href="/accountdetail">{userInfo.name}</Dropdown.Item>
         <Dropdown.Item onClick={handleLogout}>Đăng Xuất</Dropdown.Item>
         <hr />
         <Dropdown.Item href="/signup">Đăng Ký</Dropdown.Item>
