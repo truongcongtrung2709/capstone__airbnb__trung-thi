@@ -12,10 +12,9 @@ import { logout } from "../../slides/authSlide";
 const Header = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  const [userInfo, setUserInfo] = useState([]);
 
   const Logged = () => {
-    setUserInfo(user.user);
+    const userInfo = user.user;
 
     return (
       <Dropdown.Menu>

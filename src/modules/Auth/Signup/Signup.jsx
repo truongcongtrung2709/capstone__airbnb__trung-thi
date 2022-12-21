@@ -5,7 +5,7 @@ import "./signup.scss";
 import { signup } from "../../../slides/authSlide";
 import { Link, Navigate } from "react-router-dom";
 const Signup = () => {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
   const { register, handleSubmit, formState } = useForm({
     defaultValues: {
       name: "",
@@ -25,10 +25,11 @@ const Signup = () => {
   return (
     <div className="signup">
       <h2>ĐĂNG KÝ</h2>
-      <form className="formSignup" onSubmit={handleSubmit(onSubmit)}>
-        <div>
+      <form className="form-signup" onSubmit={handleSubmit(onSubmit)}>
+        <div className=" signup-item">
           <label>Tên người dùng</label>
           <input
+            placeholder="tên người dùng..."
             type="text"
             {...register("name", {
               required: {
@@ -45,9 +46,14 @@ const Signup = () => {
               },
             })}
           />
+
           {errors.name && <p>{errors.name.message}</p>}
+        </div>
+
+        <div className=" signup-item">
           <label>Email</label>
           <input
+            placeholder="Email..."
             type="email"
             {...register("email", {
               required: {
@@ -63,8 +69,11 @@ const Signup = () => {
             })}
           />
           {errors.email && <p>{errors.email.message}</p>}
+        </div>
+        <div className=" signup-item">
           <label>Mật Khẩu</label>
           <input
+            placeholder="Mật khẩu..."
             type="password"
             {...register("password", {
               required: {
@@ -74,8 +83,11 @@ const Signup = () => {
             })}
           />
           {errors.password && <p>{errors.password.message}</p>}
+        </div>
+        <div className=" signup-item">
           <label>Số điện thoại</label>
           <input
+            placeholder="Số điện thoại..."
             type="number"
             {...register("phone", {
               required: {
@@ -89,8 +101,11 @@ const Signup = () => {
             })}
           />
           {errors.phone && <p>{errors.phone.message}</p>}
+        </div>
+        <div className=" signup-item">
           <label>Ngày Sinh</label>
           <input
+            placeholder="Ngày Sinh..."
             type="text"
             {...register("birthday", {
               required: {
@@ -105,26 +120,30 @@ const Signup = () => {
             })}
           />
           {errors.birthday && <p>{errors.birthday.message}</p>}
+        </div>
+        <div className=" signup-item">
           <label>Giới Tính</label>
-          <input
-            type="radio"
-            value="true"
-            name="gender"
-            defaultChecked
-            {...register("gender")}
-          />
-          Nam
-          <input
-            type="radio"
-            value="false"
-            name="gender"
-            {...register("gender")}
-          />
-          Nữ
+          <div className="gender ">
+            <input
+              type="radio"
+              value="true"
+              name="gender"
+              defaultChecked
+              {...register("gender")}
+            />
+            Nam
+            <input
+              type="radio"
+              value="false"
+              name="gender"
+              {...register("gender")}
+            />
+            Nữ
+          </div>
           {errors.gender && <p>{errors.gender.message}</p>}
         </div>
         <div>
-          <button>Tạo Tài Khoản</button>
+          <button className="btn-signup">Tạo Tài Khoản</button>
           <div>
             Đã có tài khoản ? <Link to="/signin">Đăng nhập ngay !</Link>
           </div>

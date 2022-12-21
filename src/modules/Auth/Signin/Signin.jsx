@@ -30,7 +30,7 @@ const Signin = () => {
   return (
     <div className="signin">
       <h2>ĐĂNG NHẬP</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="form-sign">
+      <form onSubmit={handleSubmit(onSubmit)} className="form-signin">
         <div className="form-item row">
           <label className="email  col-4">Email</label>
           <input
