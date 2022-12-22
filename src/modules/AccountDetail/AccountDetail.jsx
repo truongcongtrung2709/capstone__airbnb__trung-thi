@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./accountdetail.scss";
 import { BsPersonCircle } from "react-icons/bs";
 import { HiOutlineShieldCheck } from "react-icons/hi";
@@ -6,12 +6,12 @@ import { BsCheckLg } from "react-icons/bs";
 import { Nav } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import EditAccountModal from "./EditAccountModal/EditAccountModal";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import authAPI from "../../services/authAPI";
 const AccountDetail = () => {
   const navigate = useNavigate();
 
   const { user } = useSelector((state) => state.auth);
-  console.log(user);
   const [imgPreview, setImgPreview] = useState("");
 
   const [showEditModal, setShowEditModal] = useState(false);
@@ -19,7 +19,13 @@ const AccountDetail = () => {
   const handleShow = () => setShowEditModal(true);
 
   const inputRef = useRef(null);
-
+  console.log(imgPreview);
+  // useEffect(() => {
+  //   uploadAvatar();
+  // });
+  // const uploadAvatar = async () => {
+  //   await authAPI.uploadAvatar(imgPreview);
+  // };
   const handleClickFile = () => {
     inputRef.current.click();
   };
@@ -29,8 +35,6 @@ const AccountDetail = () => {
     if (!fileObj) {
       return;
     } else {
-      console.log("fileObj is", fileObj);
-      e.target.value = null;
       const fileReader = new FileReader();
       fileReader.readAsDataURL(fileObj);
       fileReader.onload = (evt) => {
@@ -38,10 +42,10 @@ const AccountDetail = () => {
       };
     }
   };
-if(!user || user === undefined) {
-  // navigate("/")
-  return;
-}
+  if (!user || user === undefined) {
+    alert("bạn chưa đăng nhập");
+    navigate("/signin");
+  }
   return (
     <div className="account">
       <div className="account__container">
@@ -53,7 +57,7 @@ if(!user || user === undefined) {
                   <BsPersonCircle />
                 ) : (
                   imgPreview && (
-                    <img width={150} src={imgPreview} alt="preview" />
+                    <img width={150} src={imgPreview} alt="user.user.name" />
                   )
                 )}
               </div>
@@ -89,12 +93,14 @@ if(!user || user === undefined) {
           <div className="account__rooms col-9">
             <h2>Xin chào, tôi là {user.user.name}</h2>
             <p>Bắt đầu tham gia vào 2022</p>
-            <button href=""  className="edit-account "
-            onClick={handleShow}
-            >
+            <button href="" className="edit-account " onClick={handleShow}>
               Chỉnh sửa hồ sơ
             </button>
-            <EditAccountModal showEditModal={showEditModal} handleClose={handleClose} />
+            <EditAccountModal
+              showEditModal={showEditModal}
+              handleClose={handleClose}
+              userDetail={user.user}
+            />
             <h2>Phòng đã thuê</h2>
             <div className="rentList"></div>
           </div>

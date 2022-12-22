@@ -1,18 +1,19 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import "./signup.scss";
 import { signup } from "../../../slides/authSlide";
 import { Link, useNavigate } from "react-router-dom";
 import { Nav } from "react-bootstrap";
+import authAPI from "../../../services/authAPI";
 const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const inputRef = useRef(null);
-  const [imgPreview, setImgPreview] = useState("")
+  const [imgPreview, setImgPreview] = useState("");
 
-  const { register, handleSubmit,setValue, formState } = useForm({
+  const { register, handleSubmit, setValue, formState } = useForm({
     defaultValues: {
       name: "",
       email: "",
@@ -28,17 +29,15 @@ const Signup = () => {
 
   const handleFileChange = (evt) => {
     const file = evt.target.files[0];
-    if(!file){
+    if (!file) {
       return;
-    }else{
-      setValue("avatar", file)
+    } else {
+      setValue("avatar", file);
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
-      fileReader.onload = (evt) =>{
+      fileReader.onload = (evt) => {
         setImgPreview(evt.target.result);
-
-      }
-
+      };
     }
   };
 
@@ -47,7 +46,6 @@ const Signup = () => {
   };
 
   const onSubmit = (values) => {
-    console.log(values);
     dispatch(signup(values));
     alert("đăng ký thành công");
     navigate("/");
@@ -163,7 +161,7 @@ const Signup = () => {
           <Nav.Link href="" className="avatar__pick" onClick={handleClickFile}>
             Chọn ảnh
           </Nav.Link>
-          {imgPreview && <img width={150} src={imgPreview} alt="preview"/>}
+          {imgPreview && <img width={150} src={imgPreview} alt="preview" />}
         </div>
 
         <div className=" signup-item">

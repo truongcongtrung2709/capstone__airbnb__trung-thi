@@ -6,11 +6,9 @@ import { signin } from "../../../slides/authSlide";
 import "./signin.scss";
 const Signin = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams.get("redirectUrl"));
 
   const dispatch = useDispatch();
   const { user, loading, error } = useSelector((state) => state.auth);
-  console.log(user);
   const { register, handleSubmit, formState } = useForm({
     defaultValue: { email: "", password: "" },
     mode: "onTouched",
@@ -18,9 +16,8 @@ const Signin = () => {
   const { errors } = formState;
 
   const onSubmit = (values) => {
-    console.log(values);
     dispatch(signin(values));
-    alert("Đăng nhập thành công")
+    alert("Đăng nhập thành công");
   };
   if (user) {
     const redirectUrl = searchParams.get("redirectUrl");

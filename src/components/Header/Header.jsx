@@ -14,9 +14,7 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-
   const Logged = () => {
-
     return (
       <Dropdown.Menu>
         <Dropdown.Item href="/accountdetail">{user.user.name}</Dropdown.Item>
@@ -38,8 +36,8 @@ const Header = () => {
   const handleLogout = () => {
     dispatch(logout());
     alert("Bạn đã đăng xuất");
-    navigate("/")
-  }
+    navigate("/");
+  };
   return (
     <>
       <Navbar fixed="top">
