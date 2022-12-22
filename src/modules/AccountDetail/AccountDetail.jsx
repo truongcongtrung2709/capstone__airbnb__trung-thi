@@ -6,8 +6,12 @@ import { BsCheckLg } from "react-icons/bs";
 import { Nav } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import EditAccountModal from "./EditAccountModal/EditAccountModal";
+import {  useNavigate } from "react-router-dom";
 const AccountDetail = () => {
+  const navigate = useNavigate();
+
   const { user } = useSelector((state) => state.auth);
+  console.log(user);
   const [imgPreview, setImgPreview] = useState("");
 
   const [showEditModal, setShowEditModal] = useState(false);
@@ -34,7 +38,10 @@ const AccountDetail = () => {
       };
     }
   };
-
+if(!user || user === undefined) {
+  // navigate("/")
+  return;
+}
   return (
     <div className="account">
       <div className="account__container">

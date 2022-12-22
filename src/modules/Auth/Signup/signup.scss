@@ -30,6 +30,11 @@ $pink: #ff385c;
         border-radius: 10px;
         border: 1px solid $pink;
       }
+      .avatar__pick{
+        border: 1px solid $pink;
+        background-color: $pink;
+        color: white;
+      }
       .gender{
         display: flex;
         padding: 10px;

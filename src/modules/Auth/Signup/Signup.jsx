@@ -1,27 +1,58 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import "./signup.scss";
 import { signup } from "../../../slides/authSlide";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Nav } from "react-bootstrap";
 const Signup = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { register, handleSubmit, formState } = useForm({
+
+  const inputRef = useRef(null);
+  const [imgPreview, setImgPreview] = useState("")
+
+  const { register, handleSubmit,setValue, formState } = useForm({
     defaultValues: {
       name: "",
       email: "",
       password: "",
       phone: "",
       birthday: "",
+      avatar: "",
       gender: "",
     },
     mode: "onTouched",
   });
   const { errors } = formState;
+
+  const handleFileChange = (evt) => {
+    const file = evt.target.files[0];
+    if(!file){
+      return;
+    }else{
+      setValue("avatar", file)
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = (evt) =>{
+        setImgPreview(evt.target.result);
+
+      }
+
+    }
+  };
+
+  const handleClickFile = () => {
+    inputRef.current.click();
+  };
+
   const onSubmit = (values) => {
     console.log(values);
     dispatch(signup(values));
+    alert("đăng ký thành công");
+    navigate("/");
   };
+
   return (
     <div className="signup">
       <h2>ĐĂNG KÝ</h2>
@@ -63,7 +94,7 @@ const Signup = () => {
 
               pattern: {
                 value:
-                  /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+                  /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i,
                 message: "Email không đúng định dạng",
               },
             })}
@@ -121,6 +152,20 @@ const Signup = () => {
           />
           {errors.birthday && <p>{errors.birthday.message}</p>}
         </div>
+        <div className="signup-item">
+          <label htmlFor="">Hình đại diện</label>
+          <input
+            style={{ display: "none" }}
+            ref={inputRef}
+            type="file"
+            onChange={handleFileChange}
+          />
+          <Nav.Link href="" className="avatar__pick" onClick={handleClickFile}>
+            Chọn ảnh
+          </Nav.Link>
+          {imgPreview && <img width={150} src={imgPreview} alt="preview"/>}
+        </div>
+
         <div className=" signup-item">
           <label>Giới Tính</label>
           <div className="gender ">

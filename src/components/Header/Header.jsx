@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Dropdown, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import "./header.scss";
 import logo from "./airbnb.svg";
+import { useNavigate } from "react-router-dom";
 
 import { AiOutlineGlobal } from "react-icons/ai";
 import { HiMenu } from "react-icons/hi";
@@ -10,6 +11,7 @@ import { GrFormSearch } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../slides/authSlide";
 const Header = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
@@ -36,7 +38,8 @@ const Header = () => {
   const handleLogout = () => {
     dispatch(logout());
     alert("Bạn đã đăng xuất");
-  };
+    navigate("/")
+  }
   return (
     <>
       <Navbar fixed="top">

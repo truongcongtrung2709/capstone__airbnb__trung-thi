@@ -20,6 +20,7 @@ const Signin = () => {
   const onSubmit = (values) => {
     console.log(values);
     dispatch(signin(values));
+    alert("Đăng nhập thành công")
   };
   if (user) {
     const redirectUrl = searchParams.get("redirectUrl");
