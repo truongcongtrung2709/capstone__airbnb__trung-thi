@@ -1,4 +1,53 @@
+$border-gray: rgba(155, 155, 155, 0.267);
+$fs-avatar: 170px;
+$black-c:black;
 .account{
     padding-top:100px;
     padding-bottom:80px ;
+    &__container{
+        width: 80%;
+        margin: 0 auto;
+        .account__content{
+
+            .account__detail{
+                padding :20px 25px;
+                border: 1px solid $border-gray;
+                border-radius: 15px;
+                .avatar{
+                    text-align: center;
+                    svg{
+                        font-size:$fs-avatar;
+                    }
+                    &__update{
+                        padding-top: 10px;
+                        text-decoration: underline;
+                    }
+                }
+                .verify{
+                    padding: 30px 0;
+                    &__icon{
+                        font-size: 40px;
+                        padding-bottom: 10px;
+                    }
+                    .btn-medal{
+                        border: 1px solid $black-c
+                    }
+                }
+                .confirm{
+                    .confirm__email{
+                        svg{
+                            margin-right: 20px;
+                        }
+                    }
+                }
+            }
+            .account__rooms{
+                .edit-account{
+                    border: none;
+                    background-color: transparent;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
 }

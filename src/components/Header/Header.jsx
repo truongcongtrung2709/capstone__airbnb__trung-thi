@@ -14,11 +14,10 @@ const Header = () => {
   const { user } = useSelector((state) => state.auth);
 
   const Logged = () => {
-    const userInfo = user.user;
 
     return (
       <Dropdown.Menu>
-        <Dropdown.Item href="/accountdetail">{userInfo.name}</Dropdown.Item>
+        <Dropdown.Item href="/accountdetail">{user.user.name}</Dropdown.Item>
         <Dropdown.Item onClick={handleLogout}>Đăng Xuất</Dropdown.Item>
         <hr />
         <Dropdown.Item href="/signup">Đăng Ký</Dropdown.Item>
