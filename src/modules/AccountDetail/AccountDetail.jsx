@@ -7,30 +7,48 @@ import { Nav } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import EditAccountModal from "./EditAccountModal/EditAccountModal";
 import { useNavigate } from "react-router-dom";
-import authAPI from "../../services/authAPI";
+import usersAPI from "../../services/usersAPI";
 const AccountDetail = () => {
   const navigate = useNavigate();
 
   const { user } = useSelector((state) => state.auth);
+  const [userDetails, setUserDetails] = useState([]);
   const [imgPreview, setImgPreview] = useState("");
-
   const [showEditModal, setShowEditModal] = useState(false);
   const handleClose = () => setShowEditModal(false);
-  const handleShow = () => setShowEditModal(true);
+
+  const handleShow = () => {
+    setShowEditModal(true);
+  };
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await usersAPI.getUserbyId(user.user.id);
+        setUserDetails(data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [user.user.id]);
+  // useEffect(()=> {
+  //   try {
+  //     uploadAvatar();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // })
+
+  // const uploadAvatar = async () =>{
+  // }
 
   const inputRef = useRef(null);
-  console.log(imgPreview);
-  // useEffect(() => {
-  //   uploadAvatar();
-  // });
-  // const uploadAvatar = async () => {
-  //   await authAPI.uploadAvatar(imgPreview);
-  // };
+
   const handleClickFile = () => {
     inputRef.current.click();
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const fileObj = e.target.files && e.target.files[0];
     if (!fileObj) {
       return;
@@ -40,6 +58,7 @@ const AccountDetail = () => {
       fileReader.onload = (evt) => {
         setImgPreview(evt.target.result);
       };
+      await usersAPI.uploadAvatar(imgPreview);
     }
   };
   if (!user || user === undefined) {
@@ -53,11 +72,15 @@ const AccountDetail = () => {
           <div className="account__detail col-3">
             <div className="avatar">
               <div className="avatar__pic">
-                {!imgPreview ? (
+                {!userDetails.avatar ? (
                   <BsPersonCircle />
                 ) : (
-                  imgPreview && (
-                    <img width={150} src={imgPreview} alt="user.user.name" />
+                  userDetails.avatar && (
+                    <img
+                      width={150}
+                      src={userDetails.avatar}
+                      alt="user.user.name"
+                    />
                   )
                 )}
               </div>
@@ -93,13 +116,19 @@ const AccountDetail = () => {
           <div className="account__rooms col-9">
             <h2>Xin chào, tôi là {user.user.name}</h2>
             <p>Bắt đầu tham gia vào 2022</p>
-            <button href="" className="edit-account " onClick={handleShow}>
+            <button
+              href=""
+              className="edit-account "
+              onClick={() => handleShow()}
+            >
               Chỉnh sửa hồ sơ
             </button>
             <EditAccountModal
               showEditModal={showEditModal}
               handleClose={handleClose}
-              userDetail={user.user}
+              userDetails={
+                userDetails
+              }
             />
             <h2>Phòng đã thuê</h2>
             <div className="rentList"></div>
