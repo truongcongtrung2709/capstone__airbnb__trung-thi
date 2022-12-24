@@ -3,6 +3,7 @@ import { Button, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import "./editAccountModal.scss";
 const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
+  console.log(userDetails);
   const {
     register,
     handleSubmit,
