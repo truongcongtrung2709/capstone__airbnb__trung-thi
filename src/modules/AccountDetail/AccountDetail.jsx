@@ -126,9 +126,7 @@ const AccountDetail = () => {
             <EditAccountModal
               showEditModal={showEditModal}
               handleClose={handleClose}
-              userDetails={
-                userDetails
-              }
+              userDetails={userDetails}
             />
             <h2>Phòng đã thuê</h2>
             <div className="rentList"></div>

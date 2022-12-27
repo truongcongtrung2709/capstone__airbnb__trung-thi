@@ -1,11 +1,12 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import usersAPI from "../../../services/usersAPI";
 import "./editAccountModal.scss";
 const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
-  console.log(userDetails);
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -30,8 +31,17 @@ const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
     }, [userDetails]),
     mode: "onTouched",
   });
-
-  const onSubmit = (values) => {};
+  useEffect(() => {
+    reset(userDetails);
+  }, [userDetails, reset]);
+  const onSubmit = async (values) => {
+    try {
+      await usersAPI.updateUser(values);
+      handleClose();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -102,52 +112,51 @@ const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
               {errors.phone && <p>{errors.phone.message}</p>}
             </div>
             <div className=" edit-item">
-          <label>Ngày Sinh</label>
-          <input
-            placeholder="Ngày Sinh..."
-            type="text"
-            {...register("birthday", {
-              required: {
-                value: true,
-                message: "Ngày Sinh không được bỏ trống",
-              },
-              pattern: {
-                value:
-                  "^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$",
-                message: "Ngày sinh không hợp lệ",
-              },
-            })}
-          />
-          {errors.birthday && <p>{errors.birthday.message}</p>}
-        </div>
-        <div className=" edit-item">
-          <label>Giới Tính</label>
-          <div className="gender ">
-            <input
-              type="radio"
-              value="true"
-              name="gender"
-              defaultChecked
-              {...register("gender")}
-            />
-            Nam
-            <input
-              type="radio"
-              value="false"
-              name="gender"
-              {...register("gender")}
-            />
-            Nữ
-          </div>
-          {errors.gender && <p>{errors.gender.message}</p>}
-        </div>
+              <label>Ngày Sinh</label>
+              <input
+                placeholder="Ngày Sinh..."
+                type="text"
+                {...register("birthday", {
+                  required: {
+                    value: true,
+                    message: "Ngày Sinh không được bỏ trống",
+                  },
+                  pattern: {
+                    value:
+                      "^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$",
+                    message: "Ngày sinh không hợp lệ",
+                  },
+                })}
+              />
+              {errors.birthday && <p>{errors.birthday.message}</p>}
+            </div>
+            <div className=" edit-item">
+              <label>Giới Tính</label>
+              <div className="gender ">
+                <input
+                  type="radio"
+                  value="true"
+                  name="gender"
+                  {...register("gender")}
+                />
+                Nam
+                <input
+                  type="radio"
+                  value="false"
+                  name="gender"
+                  {...register("gender")}
+                />
+                Nữ
+              </div>
+              {errors.gender && <p>{errors.gender.message}</p>}
+            </div>
           </form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Đóng
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" className="btn-save" onClick={onSubmit}>
             Lưu thay đổi
           </Button>
         </Modal.Footer>

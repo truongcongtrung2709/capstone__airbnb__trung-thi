@@ -1,0 +1,27 @@
+$pink: #ff385c;
+
+.modal-body {
+  form {
+    .edit-item {
+      display: flex;
+      width: 90%;
+      margin: 0 auto;
+      margin: 20px 0;
+      label {
+        width: 50%;
+        color: $pink;
+      }
+      input {
+        width: 50%;
+        border: 1px solid $pink;
+        border-radius: 10px;
+      }
+    }
+  }
+}
+.modal-footer {
+  .btn-save {
+    background-color: $pink;
+    border: 1px solid $pink;
+  }
+}
