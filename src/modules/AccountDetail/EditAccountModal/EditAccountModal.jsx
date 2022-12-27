@@ -36,7 +36,16 @@ const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
   }, [userDetails, reset]);
   const onSubmit = async (values) => {
     try {
-      await usersAPI.updateUser(values);
+      console.log(values);
+      const newValues = {
+        id: values.id,
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        birthday: values.birthday,
+        gender: values.gender,
+      }
+      await usersAPI.updateUser(newValues);
       handleClose();
     } catch (error) {
       console.log(error);
@@ -50,9 +59,10 @@ const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
           <Modal.Title>Chỉnh sửa hồ sơ</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form>
             <div className="edit-item">
-              <label htmlFor="">Tên người dùng</label>
+              <label htmlFor="name">Tên người dùng</label>
+            
               <input
                 placeholder="tên người dùng..."
                 type="text"
@@ -71,6 +81,7 @@ const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
                   },
                 })}
               />
+           
               {errors.name && <p>{errors.name.message}</p>}
             </div>
             <div className="edit-item">
@@ -90,9 +101,9 @@ const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
                     message: "Email không đúng định dạng",
                   },
                 })}
-              />
-              {errors.email && <p>{errors.email.message}</p>}
+              />      
             </div>
+            {errors.email && <p>{errors.email.message}</p>}
             <div className="edit-item">
               <label>Số điện thoại</label>
               <input
@@ -109,8 +120,8 @@ const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
                   },
                 })}
               />
-              {errors.phone && <p>{errors.phone.message}</p>}
             </div>
+            {errors.phone && <p>{errors.phone.message}</p>}
             <div className=" edit-item">
               <label>Ngày Sinh</label>
               <input
@@ -128,8 +139,9 @@ const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
                   },
                 })}
               />
-              {errors.birthday && <p>{errors.birthday.message}</p>}
+              
             </div>
+            {errors.birthday && <p>{errors.birthday.message}</p>}
             <div className=" edit-item">
               <label>Giới Tính</label>
               <div className="gender ">
@@ -137,7 +149,8 @@ const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
                   type="radio"
                   value="true"
                   name="gender"
-                  {...register("gender")}
+                  {...register("gender",
+               )}
                 />
                 Nam
                 <input
@@ -156,7 +169,7 @@ const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
           <Button variant="secondary" onClick={handleClose}>
             Đóng
           </Button>
-          <Button variant="primary" className="btn-save" onClick={onSubmit}>
+          <Button variant="primary" className="btn-save" onClick={handleSubmit(onSubmit)}>
             Lưu thay đổi
           </Button>
         </Modal.Footer>

@@ -106,7 +106,7 @@ const AccountDetail = () => {
               <hr />
             </div>
             <div className="confirm">
-              <h4 className="confirm__title">{user.user.name} đã xác nhận</h4>
+              <h4 className="confirm__title">{userDetails.name} đã xác nhận</h4>
               <span className="confirm__email ">
                 <BsCheckLg />
                 Địa chỉ email
@@ -114,7 +114,7 @@ const AccountDetail = () => {
             </div>
           </div>
           <div className="account__rooms col-9">
-            <h2>Xin chào, tôi là {user.user.name}</h2>
+            <h2>Xin chào, tôi là {userDetails.name}</h2>
             <p>Bắt đầu tham gia vào 2022</p>
             <button
               href=""
@@ -129,7 +129,12 @@ const AccountDetail = () => {
               userDetails={userDetails}
             />
             <h2>Phòng đã thuê</h2>
-            <div className="rentList"></div>
+            <div className="rentList">
+              <div className="rent">
+                <p>Toàn bộ căn hộ dịch vụ tại Vị trí</p>
+                <h4>Tên Phòng</h4>
+              </div>
+            </div>
           </div>
         </div>
       </div>
