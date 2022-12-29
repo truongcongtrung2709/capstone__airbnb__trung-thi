@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import EditAccountModal from "./EditAccountModal/EditAccountModal";
 import { useNavigate } from "react-router-dom";
 import usersAPI from "../../services/usersAPI";
+import roomsAPI from "../../services/roomsAPI";
 const AccountDetail = () => {
   const navigate = useNavigate();
 
@@ -15,17 +16,28 @@ const AccountDetail = () => {
   const [userDetails, setUserDetails] = useState([]);
   const [imgPreview, setImgPreview] = useState("");
   const [showEditModal, setShowEditModal] = useState(false);
+  const [roomDetails, setRoomDetails] = useState([]);
   const handleClose = () => setShowEditModal(false);
-
   const handleShow = () => {
     setShowEditModal(true);
   };
-
+  console.log(roomDetails);
   useEffect(() => {
     (async () => {
       try {
         const data = await usersAPI.getUserbyId(user.user.id);
         setUserDetails(data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [user.user.id]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await roomsAPI.getRoomByUser(user.user.id);
+        setRoomDetails(data);
       } catch (error) {
         console.log(error);
       }
@@ -128,12 +140,23 @@ const AccountDetail = () => {
               handleClose={handleClose}
               userDetails={userDetails}
             />
-            <h2>Phòng đã thuê</h2>
-            <div className="rentList">
-              <div className="rent">
-                <p>Toàn bộ căn hộ dịch vụ tại Vị trí</p>
-                <h4>Tên Phòng</h4>
-              </div>
+            <h2 className="room-title my-5">Phòng đã thuê</h2>
+            <div className="rent-list">
+              {roomDetails.map((item) => (
+                <div className="rent" key={item.id}>
+                  <h4 className="rent-title my-3">{item.maPhong}</h4>
+                  <div className="room-info">
+                    <div className="checkin">
+                      <p>Ngày đến: {item.ngayDen}</p>
+                      <p>Ngày đi: {item.ngayDi}</p>
+                    </div>
+                    <div className="num-quest">
+                      <p>Mã người dùng:{item.maNguoiDung}</p>
+                      <p>{item.soLuongKhach} khách</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

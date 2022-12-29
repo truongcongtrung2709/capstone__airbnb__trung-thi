@@ -44,7 +44,7 @@ const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
         phone: values.phone,
         birthday: values.birthday,
         gender: values.gender,
-      }
+      };
       await usersAPI.updateUser(newValues);
       handleClose();
     } catch (error) {
@@ -62,7 +62,7 @@ const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
           <form>
             <div className="edit-item">
               <label htmlFor="name">Tên người dùng</label>
-            
+
               <input
                 placeholder="tên người dùng..."
                 type="text"
@@ -81,7 +81,7 @@ const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
                   },
                 })}
               />
-           
+
               {errors.name && <p>{errors.name.message}</p>}
             </div>
             <div className="edit-item">
@@ -101,7 +101,7 @@ const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
                     message: "Email không đúng định dạng",
                   },
                 })}
-              />      
+              />
             </div>
             {errors.email && <p>{errors.email.message}</p>}
             <div className="edit-item">
@@ -139,7 +139,6 @@ const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
                   },
                 })}
               />
-              
             </div>
             {errors.birthday && <p>{errors.birthday.message}</p>}
             <div className=" edit-item">
@@ -149,8 +148,7 @@ const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
                   type="radio"
                   value="true"
                   name="gender"
-                  {...register("gender",
-               )}
+                  {...register("gender")}
                 />
                 Nam
                 <input
@@ -169,7 +167,11 @@ const EditAccountModal = ({ showEditModal, handleClose, userDetails }) => {
           <Button variant="secondary" onClick={handleClose}>
             Đóng
           </Button>
-          <Button variant="primary" className="btn-save" onClick={handleSubmit(onSubmit)}>
+          <Button
+            variant="primary"
+            className="btn-save"
+            onClick={handleSubmit(onSubmit)}
+          >
             Lưu thay đổi
           </Button>
         </Modal.Footer>

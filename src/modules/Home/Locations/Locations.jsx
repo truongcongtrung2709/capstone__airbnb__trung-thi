@@ -7,15 +7,20 @@ import house from "./images/house.jpg";
 import sea from "./images/sea.jpg";
 import farm from "./images/houseFarm.jpg";
 import pet from "./images/pet.jpg";
+import { Link, useNavigate } from "react-router-dom";
 const Locations = () => {
   const [locations, setLocations] = useState([]);
-
+  const [selectedItem, setSelectedItem] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
     (async () => {
       const data = await locationsAPI.getLocations();
       setLocations(data);
     })();
   }, []);
+  const selectItem = (item) => {
+    setSelectedItem(item);
+  };
   return (
     <div className="locations">
       <div className="locations__container">
@@ -26,7 +31,13 @@ const Locations = () => {
           <div className="locations__list">
             <div className="location row">
               {locations.map((location) => (
-                <Card key={location.id} className="col-3">
+                <Link
+                  // to={`/rentlist/${selectedItem}`}
+                  // state={{ selectedItem: selectedItem }}
+                  onClick={() => selectItem(location)}
+                  key={location.id}
+                  className="card col-3"
+                >
                   <Card.Body>
                     <div className="card__img">
                       <Card.Img variant="left" src={location.hinhAnh} />
@@ -36,7 +47,7 @@ const Locations = () => {
                       <Card.Text>{location.tinhThanh}</Card.Text>
                     </div>
                   </Card.Body>
-                </Card>
+                </Link>
               ))}
             </div>
           </div>

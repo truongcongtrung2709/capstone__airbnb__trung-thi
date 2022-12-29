@@ -9,6 +9,8 @@
         .location {
           cursor: pointer;
           .card {
+            text-decoration: none;
+            color: black;
             border: none;
             .card-body {
               display: flex;

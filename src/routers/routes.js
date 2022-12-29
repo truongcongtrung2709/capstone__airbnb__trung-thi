@@ -5,6 +5,7 @@ import Auth from "../modules/Auth/Auth";
 import Signin from "../modules/Auth/Signin/Signin";
 import Signup from "../modules/Auth/Signup/Signup";
 import AccountDetail from "../modules/AccountDetail";
+import RentList from "../modules/RentList";
 
 const routes = createBrowserRouter([
   {
@@ -18,7 +19,16 @@ const routes = createBrowserRouter([
         children: [
           { path: "/signin", element: <Signin />, title: "Đăng Nhập" },
           { path: "/signup", element: <Signup />, title: "Đăng Ký" },
-          { path: "/accountdetail",element: <AccountDetail/>,title:"Tài Khoản"}
+          {
+            path: "/accountdetail",
+            element: <AccountDetail />,
+            title: "Tài Khoản",
+          },
+          {
+            path: "rentlist/:maViTri",
+            element: <RentList />,
+            title: "RentList",
+          },
         ],
       },
     ],
