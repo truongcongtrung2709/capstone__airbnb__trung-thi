@@ -47,7 +47,6 @@ const Signup = () => {
 
   const onSubmit = (values) => {
     dispatch(signup(values));
-    alert("đăng ký thành công");
     navigate("/");
   };
 

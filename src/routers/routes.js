@@ -6,6 +6,7 @@ import Signin from "../modules/Auth/Signin/Signin";
 import Signup from "../modules/Auth/Signup/Signup";
 import AccountDetail from "../modules/AccountDetail";
 import RentList from "../modules/RentList";
+import RentDetail from "../modules/RentDetail";
 
 const routes = createBrowserRouter([
   {
@@ -28,6 +29,12 @@ const routes = createBrowserRouter([
             path: "rentlist/:maViTri",
             element: <RentList />,
             title: "RentList",
+          },
+
+          {
+            path: "/rentdetail/:id",
+            element: <RentDetail />,
+            title: "Chi Tiết Phòng",
           },
         ],
       },

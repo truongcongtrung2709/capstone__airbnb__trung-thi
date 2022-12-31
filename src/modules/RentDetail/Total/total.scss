@@ -1,0 +1,36 @@
+$fs-xs: 12px;
+$fs-sm: 14px;
+$fs-md: 16px;
+$fs-lg: 22px;
+$fs-xl: 25px;
+$cl-black: black;
+$cl-white: white;
+$cl-gray: rgb(205, 205, 205);
+$cl-pink: #ff385c;
+
+.booking {
+  padding: 50px;
+  &__content {
+    padding: 20px;
+    border: 1px solid $cl-gray;
+    border-radius: 20px;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
+    .price-review {
+      display: flex;
+      justify-content: space-between;
+      .price {
+        span {
+          font-weight: bold;
+        }
+      }
+      .review {
+        svg {
+          color: $cl-pink;
+        }
+        .review-num {
+          color: $cl-gray;
+        }
+      }
+    }
+  }
+}

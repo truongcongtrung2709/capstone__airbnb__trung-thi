@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import roomsAPI from "../../services/roomsAPI";
 import "./rentlist.scss";
 const RentList = () => {
   const [locationDetails, setLocationDetails] = useState([]);
   const location = useLocation();
   const stateLocation = location.state.selectedItem;
+  const navigate = useNavigate();
   useEffect(() => {
     (async () => {
       try {
@@ -16,6 +17,14 @@ const RentList = () => {
       }
     })();
   }, []);
+  const handleClickRoom = (room) => {
+    navigate(`/rentdetail/${room.id}`, {
+      state: {
+        room: room,
+        locationDetails: locationDetails,
+      },
+    });
+  };
   return (
     <div className="rent-list">
       <div className="rent-list__container">
@@ -26,12 +35,17 @@ const RentList = () => {
           <h1 className="title">Chỗ ở tại vị trí đã chọn</h1>
           <div className="room-list">
             {locationDetails.map((room) => (
-              <div className="room" key={room.id}>
+              <div
+                className="room"
+                key={room.id}
+                onClick={() => {
+                  handleClickRoom(room);
+                }}
+              >
                 <div className="room__img">
                   <img src={room.hinhAnh} alt={room.id} />
                 </div>
                 <div className="room__info">
-                  <p>Toàn bộ căn hộ dịch vụ tại {stateLocation.tinhThanh}</p>
                   <h2>{room.tenPhong}</h2>
                   <p className="details">
                     {room.khach} khách - {room.phongNgu} phòng ngủ -
