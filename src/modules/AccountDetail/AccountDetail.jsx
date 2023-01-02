@@ -70,7 +70,10 @@ const AccountDetail = () => {
       fileReader.onload = (evt) => {
         setImgPreview(evt.target.result);
       };
-      await usersAPI.uploadAvatar(imgPreview);
+      console.log(fileObj);
+      const formData = new FormData();
+      formData.append("formFile", fileObj);
+      await usersAPI.uploadAvatar(formData);
     }
   };
   if (!user || user === undefined) {
@@ -144,7 +147,7 @@ const AccountDetail = () => {
             <div className="rent-list">
               {roomDetails.map((item) => (
                 <div className="rent" key={item.id}>
-                  <h4 className="rent-title my-3">{item.maPhong}</h4>
+                  <h4 className="rent-title my-3">Mã Phòng: {item.maPhong}</h4>
                   <div className="room-info">
                     <div className="checkin">
                       <p>Ngày đến: {item.ngayDen}</p>

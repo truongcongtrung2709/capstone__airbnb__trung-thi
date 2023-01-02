@@ -13,7 +13,7 @@ import { AiOutlineWifi } from "react-icons/ai";
 import { AiFillCar } from "react-icons/ai";
 import { MdPool } from "react-icons/md";
 
-import commentsAPI from "../../services/commentAPI";
+import commentAPI from "../../services/commentAPI";
 import "./rentDetail.scss";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -31,7 +31,7 @@ const RentDetail = () => {
   useEffect(() => {
     (async () => {
       try {
-        const data = await commentsAPI.getCommentsById(room.id);
+        const data = await commentAPI.getCommentsById(room.id);
         setComments(data);
       } catch (error) {
         console.log(error);
@@ -40,18 +40,25 @@ const RentDetail = () => {
   }, []);
   const { register, handleSubmit } = useForm({
     defaultValues: {
+      maPhong: "",
+      maNguoiBinhLuan: "",
       ngayBinhLuan: "",
       noiDung: "",
+      saoBinhLuan: "",
     },
     mode: "onTouuched",
   });
 
   const onSubmit = async (values) => {
     const newValues = {
+      maPhong: room.id,
+      maNguoiBinhLuan: user.user.id,
       ngayBinhLuan: date,
       noiDung: values.noiDung,
     };
-    await commentsAPI.postComment(newValues);
+    console.log(newValues);
+    await commentAPI.postComment(newValues);
+    window.location.reload(true);
   };
   return (
     <div className="room">
@@ -176,8 +183,8 @@ const RentDetail = () => {
             <Total room={room} user={user} />
           </div>
           <div className="room__container__content__comments">
-            {comments.map((comment) => (
-              <div className="reviewer" key={comment.tenNguoiBinhLuan}>
+            {comments.map((comment, index) => (
+              <div className="reviewer" key={index}>
                 <div className="info">
                   <div className="avatar">
                     <img src={comment.avatar} alt="" />

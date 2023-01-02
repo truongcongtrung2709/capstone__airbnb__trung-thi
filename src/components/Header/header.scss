@@ -1,3 +1,5 @@
+$fs-xxxs: 8px;
+$fs-xxs: 10px;
 $fs-xs: 12px;
 $fs-sm: 14px;
 $fs-md: 16px;
@@ -21,6 +23,8 @@ $cl-pink: #ff385c;
     margin: 0 auto;
     padding: 10px 0;
     display: flex;
+    .img-logo {
+    }
     .options {
       display: block;
       justify-content: center;
@@ -138,13 +142,11 @@ $cl-pink: #ff385c;
                 position: relative;
                 .dropdown {
                   position: absolute;
-                  min-width: 0;
-                  max-width: 430px;
+
                   max-height: 250px;
-                  width: 100%;
                   overflow-x: hidden;
                   visibility: hidden;
-                  left: 0;
+                  left: -20px;
                   top: 150%;
                   z-index: 10;
 

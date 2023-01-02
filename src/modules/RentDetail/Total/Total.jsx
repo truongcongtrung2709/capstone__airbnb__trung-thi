@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 
 import DatePicker from "react-date-picker";
-import moment from "moment";
 import "./total.scss";
 import { useForm } from "react-hook-form";
-import roomsAPI from "../../../services/roomsAPI";
-import { format } from "date-fns";
+import dayjs from "dayjs";
 const Total = ({ room, user }) => {
   const [checkInValue, setCheckInValue] = useState(new Date());
   const [checkOutValue, setCheckOutValue] = useState(new Date());
@@ -21,17 +19,21 @@ const Total = ({ room, user }) => {
   });
   const onSubmit = async (values) => {
     try {
-      // setCheckInValue(moment().format("DD/MM/yyyy"));
-      // setCheckOutValue(moment().format("DD/MM/yyyy"));
+      const dayjsCheckInValue = dayjs(checkInValue).format(
+        "YYYY-MM-DDTHH:mm:ssZ[Z]"
+      );
+      const dayjsCheckOutValue = dayjs(checkOutValue).format(
+        "YYYY-MM-DDTHH:mm:ssZ[Z]"
+      );
       const newValues = {
         maPhong: room.id,
-        ngayDen: checkInValue,
-        ngayDi: checkOutValue,
+        ngayDen: dayjsCheckInValue,
+        ngayDi: dayjsCheckOutValue,
         soLuongKhach: values.soLuongKhach,
         maNguoiDung: user.user.id,
       };
       console.log(newValues);
-      await roomsAPI.postPaidRoom(newValues);
+      // await roomsAPI.postPaidRoom(newValues);
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +56,7 @@ const Total = ({ room, user }) => {
               <label htmlFor="">Nhận Phòng</label>
               <DatePicker
                 autoFocus={false}
-                format="dd-MM-yyyy"
+                format="yyyy-MM-dd"
                 locale="vi-VI"
                 calendarIcon={false}
                 clearIcon={false}
@@ -67,7 +69,7 @@ const Total = ({ room, user }) => {
               <label htmlFor="">Trả Phòng</label>
               <DatePicker
                 autoFocus={false}
-                format="dd-MM-yyyy"
+                format="yyyy-MM-dd"
                 locale="vi-VI"
                 calendarIcon={false}
                 clearIcon={false}

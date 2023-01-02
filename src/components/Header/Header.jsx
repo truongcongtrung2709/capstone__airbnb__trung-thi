@@ -101,12 +101,18 @@ const Header = () => {
     <>
       <Navbar fixed="top">
         <div className="header__container">
-          <div className="col-3">
+          <div className="col-4 ">
             <Navbar.Brand href="/">
-              <img src={logo} alt="" width={102} height={32} />
+              <img
+                className="img-logo"
+                src={logo}
+                alt=""
+                width={102}
+                height={32}
+              />
             </Navbar.Brand>
           </div>
-          <Nav className="me-auto options col-5 ">
+          <Nav className="me-auto options col-4 ">
             <div className="options__title">
               <div
                 className="options__detail"
@@ -137,7 +143,7 @@ const Header = () => {
               </div>
               <div className="search">
                 <form className="search__content">
-                  <div className="search__content__item search__content__item__locations col-5">
+                  <div className="search__content__item search__content__item__locations col-4">
                     <label>Địa điểm</label>
                     <input
                       type="text"
@@ -182,7 +188,7 @@ const Header = () => {
                     </div>
                   </div>
 
-                  <div className=" search__content__item col-2">
+                  <div className=" search__content__item col-3">
                     <label>Nhận phòng</label>
                     <input type="text" placeholder="Thêm ngày" />
                   </div>
