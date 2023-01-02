@@ -11,6 +11,9 @@ const roomsAPI = {
       },
     });
   },
+  postPaidRoom: (values) => {
+    return fetcher.post("api/dat-phong", values);
+  },
 };
 
 export default roomsAPI;

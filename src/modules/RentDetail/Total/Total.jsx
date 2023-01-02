@@ -4,10 +4,38 @@ import { AiFillStar } from "react-icons/ai";
 import DatePicker from "react-date-picker";
 import moment from "moment";
 import "./total.scss";
-const Total = ({ room }) => {
+import { useForm } from "react-hook-form";
+import roomsAPI from "../../../services/roomsAPI";
+import { format } from "date-fns";
+const Total = ({ room, user }) => {
   const [checkInValue, setCheckInValue] = useState(new Date());
   const [checkOutValue, setCheckOutValue] = useState(new Date());
-
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      maPhong: "",
+      ngayDen: "",
+      ngayDi: "",
+      soLuongKhach: "",
+      maNguoiDung: "",
+    },
+  });
+  const onSubmit = async (values) => {
+    try {
+      // setCheckInValue(moment().format("DD/MM/yyyy"));
+      // setCheckOutValue(moment().format("DD/MM/yyyy"));
+      const newValues = {
+        maPhong: room.id,
+        ngayDen: checkInValue,
+        ngayDi: checkOutValue,
+        soLuongKhach: values.soLuongKhach,
+        maNguoiDung: user.user.id,
+      };
+      console.log(newValues);
+      await roomsAPI.postPaidRoom(newValues);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="booking">
       <div className="booking__content">
@@ -21,7 +49,7 @@ const Total = ({ room }) => {
           </p>
         </div>
         <form className="paid-form">
-          <div className="check-inOut">
+          <div className="check-in-out">
             <div className="checkin">
               <label htmlFor="">Nhận Phòng</label>
               <DatePicker
@@ -48,42 +76,34 @@ const Total = ({ room }) => {
                 minDate={checkInValue}
               />
             </div>
-            <div className="people">
-              <label htmlFor="">Khách</label>
-              <input type="number" />
-            </div>
-            <div className="paid">
-              <button className="btn-paid">Đặt Phòng</button>
-              <p className="note">Bạn vẫn chưa bị trừ tiền</p>
-            </div>
-            <hr />
-            <div className="price-days">
-              <p className="price">
-                {room.giaTien}$ x{" "}
-                {(checkOutValue.getTime() - checkInValue.getTime()) /
-                  (1000 * 3600 * 24)}{" "}
-                đêm
-              </p>
-              <p className="total-pricedays">
-                {(room.giaTien *
-                  (checkOutValue.getTime() - checkInValue.getTime())) /
-                  (1000 * 3600 * 24)}{" "}
-                $
-              </p>
-            </div>
-            <div className="fee">
-              <p className="label">Phí dịch vụ</p>
-              <p className="fee-price">30 $</p>
-            </div>
-            <div className="total">
-              <p>Tổng</p>
-              <p>
-                {(room.giaTien *
-                  (checkOutValue.getTime() - checkInValue.getTime())) /
-                  (1000 * 3600 * 24) +
-                  30}{" "}
-              </p>
-            </div>
+          </div>
+          <div className="people">
+            <label htmlFor="">Khách</label>
+            <input
+              type="number"
+              defaultValue={1}
+              {...register("soLuongKhach")}
+            />
+          </div>
+          <div className="paid">
+            <button className="btn-paid" onClick={handleSubmit(onSubmit)}>
+              Đặt Phòng
+            </button>
+            <p className="note">Bạn vẫn chưa bị trừ tiền</p>
+          </div>
+          <hr />
+          <div className="price-days">
+            <p className="price">{room.giaTien}$ x đêm</p>
+            <p className="total-pricedays">$</p>
+          </div>
+          <div className="fee">
+            <p className="label">Phí dịch vụ</p>
+            <p className="fee-price">30 $</p>
+          </div>
+          <hr />
+          <div className="total">
+            <p>Tổng</p>
+            <p>$</p>
           </div>
         </form>
       </div>

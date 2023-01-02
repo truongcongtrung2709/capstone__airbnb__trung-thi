@@ -24,7 +24,6 @@ const RentDetail = () => {
   const location = useLocation();
   const room = location.state.room;
   const [comments, setComments] = useState([]);
-
   const current = new Date();
   const date = `${current.getDate()}/${
     current.getMonth() + 1
@@ -174,7 +173,7 @@ const RentDetail = () => {
               </div>
               <hr />
             </div>
-            <Total room={room} />
+            <Total room={room} user={user} />
           </div>
           <div className="room__container__content__comments">
             {comments.map((comment) => (
