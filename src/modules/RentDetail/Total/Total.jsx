@@ -33,7 +33,7 @@ const Total = ({ room, user }) => {
         maNguoiDung: user.user.id,
       };
       console.log(newValues);
-      // await roomsAPI.postPaidRoom(newValues);
+      await roomsAPI.postPaidRoom(newValues);
     } catch (error) {
       console.log(error);
     }
