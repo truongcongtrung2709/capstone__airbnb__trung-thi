@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
-
+import roomsAPI from "../../../services/roomsAPI";
 import DatePicker from "react-date-picker";
 import "./total.scss";
 import { useForm } from "react-hook-form";
 import dayjs from "dayjs";
-const Total = ({ room, user }) => {
+import { useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
+const Total = ({ room }) => {
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
   const [checkInValue, setCheckInValue] = useState(new Date());
   const [checkOutValue, setCheckOutValue] = useState(new Date());
   const { register, handleSubmit } = useForm({
@@ -19,21 +23,26 @@ const Total = ({ room, user }) => {
   });
   const onSubmit = async (values) => {
     try {
-      const dayjsCheckInValue = dayjs(checkInValue).format(
-        "YYYY-MM-DDTHH:mm:ssZ[Z]"
-      );
-      const dayjsCheckOutValue = dayjs(checkOutValue).format(
-        "YYYY-MM-DDTHH:mm:ssZ[Z]"
-      );
-      const newValues = {
-        maPhong: room.id,
-        ngayDen: dayjsCheckInValue,
-        ngayDi: dayjsCheckOutValue,
-        soLuongKhach: values.soLuongKhach,
-        maNguoiDung: user.user.id,
-      };
-      console.log(newValues);
-      await roomsAPI.postPaidRoom(newValues);
+      if (user === null || user === undefined) {
+        alert("Bạn phải đăng nhập");
+        return navigate("/signin");
+      } else {
+        const dayjsCheckInValue = dayjs(checkInValue).format(
+          "YYYY-MM-DDTHH:mm:ssZ[Z]"
+        );
+        const dayjsCheckOutValue = dayjs(checkOutValue).format(
+          "YYYY-MM-DDTHH:mm:ssZ[Z]"
+        );
+        const newValues = {
+          maPhong: room.id,
+          ngayDen: dayjsCheckInValue,
+          ngayDi: dayjsCheckOutValue,
+          soLuongKhach: values.soLuongKhach,
+          maNguoiDung: user.user.id,
+        };
+        console.log(newValues);
+        await roomsAPI.postPaidRoom(newValues);
+      }
     } catch (error) {
       console.log(error);
     }

@@ -19,6 +19,7 @@ const Signin = () => {
     dispatch(signin(values));
   };
   if (user) {
+    alert("Đăng nhập thành công");
     const redirectUrl = searchParams.get("redirectUrl");
     // Có thông tin user => đã đăng nhập => redirect redirectUrl hoặc Home
     return <Navigate to={redirectUrl || "/"} replace />;

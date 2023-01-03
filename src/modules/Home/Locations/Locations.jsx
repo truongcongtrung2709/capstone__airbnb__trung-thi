@@ -11,6 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Locations = () => {
   const [locations, setLocations] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItemId, setSelectedItemId] = useState(null);
   const navigate = useNavigate();
   useEffect(() => {
     (async () => {
@@ -19,7 +20,9 @@ const Locations = () => {
     })();
   }, []);
   const selectItem = (item) => {
+    console.log(item.id);
     setSelectedItem(item);
+    setSelectedItemId(item.id);
   };
   return (
     <div className="locations">
@@ -32,8 +35,11 @@ const Locations = () => {
             <div className="location row">
               {locations.map((location) => (
                 <Link
-                  // to={`/rentlist/${selectedItem}`}
-                  // state={{ selectedItem: selectedItem }}
+                  to={`/rentlist/${selectedItemId}`}
+                  state={{
+                    selectedItem: selectedItem,
+                    selectedItemId: selectedItemId,
+                  }}
                   onClick={() => selectItem(location)}
                   key={location.id}
                   className="card col-3"

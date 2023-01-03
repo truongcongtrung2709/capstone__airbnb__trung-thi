@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 //react-icons
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import { BsPersonFill } from "react-icons/bs";
 import { FiShare } from "react-icons/fi";
@@ -20,6 +20,7 @@ import { useForm } from "react-hook-form";
 import Total from "./Total/Total";
 
 const RentDetail = () => {
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
   const location = useLocation();
   const room = location.state.room;
@@ -50,15 +51,23 @@ const RentDetail = () => {
   });
 
   const onSubmit = async (values) => {
-    const newValues = {
-      maPhong: room.id,
-      maNguoiBinhLuan: user.user.id,
-      ngayBinhLuan: date,
-      noiDung: values.noiDung,
-    };
-    console.log(newValues);
-    await commentAPI.postComment(newValues);
-    window.location.reload(true);
+    try {
+      if (user === null || user === undefined) {
+        alert("Đăng Nhập để tiếp tục");
+
+        return navigate("/signin");
+      } else {
+        const newValues = {
+          maPhong: room.id,
+          maNguoiBinhLuan: user.user.id,
+          ngayBinhLuan: date,
+          noiDung: values.noiDung,
+        };
+        console.log(newValues);
+        await commentAPI.postComment(newValues);
+        window.location.reload(true);
+      }
+    } catch (error) {}
   };
   return (
     <div className="room">
@@ -180,7 +189,7 @@ const RentDetail = () => {
               </div>
               <hr />
             </div>
-            <Total room={room} user={user} />
+            <Total room={room} />
           </div>
           <div className="room__container__content__comments">
             {comments.map((comment, index) => (
@@ -201,7 +210,11 @@ const RentDetail = () => {
             ))}
             <form className="comment" onSubmit={handleSubmit(onSubmit)}>
               <div className="avatar-input">
-                <img src={user.user.avatar} alt="" width="40px" />
+                {!user ? (
+                  ""
+                ) : (
+                  <img src={user.user.avatar} alt="" width="40px" />
+                )}
                 <textarea
                   className="form-control"
                   id="exampleFormControlTextarea1"
