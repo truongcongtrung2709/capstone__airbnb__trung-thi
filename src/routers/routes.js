@@ -26,7 +26,7 @@ const routes = createBrowserRouter([
             title: "Tài Khoản",
           },
           {
-            path: "rentlist/:maViTri",
+            path: "rentlist/:maViTri", // rentlist/5
             element: <RentList />,
             title: "RentList",
           },

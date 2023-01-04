@@ -3,14 +3,13 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import roomsAPI from "../../services/roomsAPI";
 import "./rentlist.scss";
 const RentList = () => {
+  let { maViTri } = useParams();
   const [locationDetails, setLocationDetails] = useState([]);
-  const location = useLocation();
-  const stateLocation = location.state.selectedItem;
   const navigate = useNavigate();
   useEffect(() => {
     (async () => {
       try {
-        const data = await roomsAPI.getRoomByLocation(stateLocation.id);
+        const data = await roomsAPI.getRoomByLocation(maViTri);
         setLocationDetails(data);
       } catch (error) {
         console.log(error);

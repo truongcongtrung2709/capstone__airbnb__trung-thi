@@ -215,10 +215,8 @@ const Header = () => {
             </div>
           </Nav>
           <Nav className="me-auto end-nav col-4">
-            <Nav.Link href="#">Cho thuê chỗ ở qua Airbnb</Nav.Link>
-            <Nav.Link href="#">
-              <AiOutlineGlobal />
-            </Nav.Link>
+            
+            
             <Dropdown>
               <Dropdown.Toggle>
                 <HiMenu className="toggle" />
