@@ -21,6 +21,12 @@ const Locations = () => {
   const selectItem = (item) => {
     setSelectedItem(item);
   };
+
+  const handleOnLocationClick = (id) => {
+    // console.log(id);
+    navigate(`/rentlist/${id}`);
+  };
+
   return (
     <div className="locations">
       <div className="locations__container">
@@ -31,10 +37,13 @@ const Locations = () => {
           <div className="locations__list">
             <div className="location row">
               {locations.map((location) => (
-                <Link
-                  // to={`/rentlist/${selectedItem}`}
-                  // state={{ selectedItem: selectedItem }}
-                  onClick={() => selectItem(location)}
+                <div
+                  // to={`/rentlist/${selectedItemId}`}
+                  // state={{
+                  //   selectedItem: selectedItem,
+                  //   selectedItemId: selectedItemId,
+                  // }}
+                  onClick={() => handleOnLocationClick(location.id)}
                   key={location.id}
                   className="card col-3"
                 >
@@ -47,7 +56,7 @@ const Locations = () => {
                       <Card.Text>{location.tinhThanh}</Card.Text>
                     </div>
                   </Card.Body>
-                </Link>
+                </div>
               ))}
             </div>
           </div>
