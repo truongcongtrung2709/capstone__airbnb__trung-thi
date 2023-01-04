@@ -10,8 +10,8 @@ const Footer = () => {
     <div className="footer">
       <div className="footer__container">
         <div className="footer__content">
-          <div className="footer__menu">
-            <div className="intro">
+          <div className="footer__menu row">
+            <div className="intro col-lg-3 col-md-6">
               <ul>
                 <li>
                   <h6>GIỚI THIỆU</h6>
@@ -48,7 +48,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="comunity">
+            <div className="comunity col-lg-3 col-md-6">
               <ul>
                 <li>
                   <h6>CỘNG ĐỒNG</h6>
@@ -73,7 +73,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="welcome">
+            <div className="welcome col-lg-3 col-md-6">
               <ul>
                 <li>
                   <h6>ĐÓN TIẾP KHÁCH</h6>
@@ -98,7 +98,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="suport">
+            <div className="suport col-lg-3 col-md-6">
               <ul>
                 <li>
                   <h6>HỖ TRỢ</h6>
@@ -134,34 +134,6 @@ const Footer = () => {
               </span>
               <span>
                 <a href="">. Sơ đồ trang web</a>
-              </span>
-            </div>
-            <div className="social col-2">
-              <span>
-                <a href="" className="px-3">
-                  <RiGlobalLine />
-                  Tiếng Việt(VN)
-                </a>
-              </span>
-              <span>
-                <a href="" className="px-1">
-                  $ USD
-                </a>
-              </span>
-              <span>
-                <a href="" className="px-1">
-                  <FaFacebookF />
-                </a>
-              </span>
-              <span>
-                <a href="" className="px-1">
-                  <AiOutlineTwitter />
-                </a>
-              </span>
-              <span>
-                <a href="" className="px-1">
-                  <TiSocialInstagram />
-                </a>
               </span>
             </div>
           </div>

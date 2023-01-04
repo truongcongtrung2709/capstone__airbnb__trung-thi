@@ -39,6 +39,10 @@
             width: 300px;
             height: 400px;
             border-radius: 20px;
+            @media all and (max-width: 350px) {
+              width: 200px;
+              height: 300px;
+            }
           }
           h5 {
             padding: 20px 0;

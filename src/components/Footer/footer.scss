@@ -29,7 +29,6 @@ li {
     .footer__content {
       .footer__menu {
         padding: 50px;
-        display: flex;
         justify-content: space-between;
       }
       .footer__copyright {
@@ -39,14 +38,6 @@ li {
         .copy__text {
           span {
             padding-left: 10px;
-            a {
-              text-decoration: none;
-              color: black;
-            }
-          }
-        }
-        .social {
-          span {
             a {
               text-decoration: none;
               color: black;

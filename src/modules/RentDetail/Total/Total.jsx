@@ -12,6 +12,8 @@ const Total = ({ room }) => {
   const { user } = useSelector((state) => state.auth);
   const [checkInValue, setCheckInValue] = useState(new Date());
   const [checkOutValue, setCheckOutValue] = useState(new Date());
+  const dayjsCheckInValue = dayjs(checkInValue);
+  const dayjsCheckOutValue = dayjs(checkOutValue);
   const { register, handleSubmit } = useForm({
     defaultValues: {
       maPhong: "",
@@ -48,7 +50,7 @@ const Total = ({ room }) => {
     }
   };
   return (
-    <div className="booking">
+    <div className="booking col-lg-6">
       <div className="booking__content">
         <div className="price-review">
           <p className="price">
@@ -60,8 +62,8 @@ const Total = ({ room }) => {
           </p>
         </div>
         <form className="paid-form">
-          <div className="check-in-out">
-            <div className="checkin">
+          <div className="check-in-out row">
+            <div className="checkin col-lg-6">
               <label htmlFor="">Nhận Phòng</label>
               <DatePicker
                 autoFocus={false}
@@ -74,7 +76,7 @@ const Total = ({ room }) => {
                 minDate={new Date()}
               />
             </div>
-            <div className="checkout">
+            <div className="checkout col-lg-6">
               <label htmlFor="">Trả Phòng</label>
               <DatePicker
                 autoFocus={false}
@@ -104,8 +106,15 @@ const Total = ({ room }) => {
           </div>
           <hr />
           <div className="price-days">
-            <p className="price">{room.giaTien}$ x đêm</p>
-            <p className="total-pricedays">$</p>
+            <p className="price">
+              {room.giaTien}$ x
+              {dayjsCheckOutValue.diff(dayjsCheckInValue, "day") + 1} đêm
+            </p>
+            <p className="total-pricedays">
+              {room.giaTien *
+                (dayjsCheckOutValue.diff(dayjsCheckInValue, "day") + 1)}
+              $
+            </p>
           </div>
           <div className="fee">
             <p className="label">Phí dịch vụ</p>
@@ -114,7 +123,12 @@ const Total = ({ room }) => {
           <hr />
           <div className="total">
             <p>Tổng</p>
-            <p>$</p>
+            <p>
+              {room.giaTien *
+                (dayjsCheckOutValue.diff(dayjsCheckInValue, "day") + 1) +
+                30}
+              $
+            </p>
           </div>
         </form>
       </div>

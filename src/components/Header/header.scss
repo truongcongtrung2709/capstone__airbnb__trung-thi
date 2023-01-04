@@ -17,7 +17,7 @@ $cl-pink: #ff385c;
   margin: 0 auto;
   min-height: 80px;
   border-bottom: 1px solid $cl-gray;
-  
+
   .header__container {
     width: 92%;
     height: 100%;
@@ -26,167 +26,7 @@ $cl-pink: #ff385c;
     display: flex;
     .img-logo {
     }
-    .options {
-      display: block;
-      justify-content: center;
-      text-align: center;
-      &__title {
-        display: flex;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
 
-        font-size: $fs-sm;
-        .options__detail {
-          border: 1px solid $cl-gray;
-          border-radius: 40px;
-          box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
-          transition: box-shadow 0.2s ease;
-          transition: all 0.2s ease;
-
-          display: flex;
-          align-items: center;
-          padding: 2px 16px;
-
-          a {
-            color: $cl-black;
-            font-weight: 500;
-          }
-          a:last-child {
-            color: $cl-gray;
-            font-weight: 400;
-            display: flex;
-            align-items: center;
-            .search__btn {
-              height: 30px;
-              width: 30px;
-              line-height: 30px;
-              border-radius: 50%;
-              background-color: #ff385c;
-              margin-left: 10px;
-              svg {
-                font-size: $fs-lg;
-              }
-            }
-          }
-          &:hover {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
-          }
-        }
-      }
-      .hiding-search {
-        display: none;
-        .options_show {
-          display: flex;
-          justify-content: center;
-          padding-bottom: 15px;
-          a {
-            color: black;
-            font-size: $fs-md;
-            position: relative;
-            &:after {
-              content: "";
-              display: block;
-              position: absolute;
-              height: 2px;
-              bottom: -10px;
-              left: 50%;
-              background-color: $cl-black;
-              transition: all 250ms ease-in-out;
-              width: 0;
-            }
-            &:hover::after {
-              width: 80%;
-              left: 10%;
-            }
-            &:hover {
-              color: $cl-gray;
-            }
-          }
-        }
-
-        .border {
-          flex: 0 0 1px;
-          height: 24px;
-          width: 1px;
-        }
-        .search {
-          display: block;
-          &__content {
-            border: 1px solid $cl-gray;
-            background-color: $cl-white;
-            border-radius: 30px;
-
-            display: flex;
-            justify-content: space-around;
-            padding: 5px 20px;
-            align-items: center;
-            &__item {
-              text-align: start;
-              border-right: 1px solid $cl-gray;
-              line-height: 15px;
-              padding: 0 10px;
-              label {
-                font-size: $fs-xs;
-                font-weight: bold;
-                width: 100%;
-              }
-              input {
-                width: 100%;
-                border: none;
-                font-size: $fs-xs;
-                &:focus {
-                  outline: none;
-                }
-              }
-              &__locations {
-                position: relative;
-                .dropdown {
-                  position: absolute;
-
-                  max-height: 250px;
-                  overflow-x: hidden;
-                  visibility: hidden;
-                  left: -20px;
-                  top: 150%;
-                  z-index: 10;
-
-                  background-color: $cl-white;
-                  border-radius: 20px;
-                  box-shadow: 5px 5px 5px 5px rgb(0 0 0 / 8%),
-                    6px 4px 12px rgb(0 0 0 / 5%);
-                  &.v {
-                    visibility: visible;
-                  }
-                  &__item {
-                    display: flex;
-                    cursor: pointer;
-                  }
-                }
-              }
-            }
-
-            .last-item {
-              border: none;
-            }
-
-            .btn-roomSearch {
-              background-color: $cl-pink;
-              color: $cl-white;
-
-              border: 1px solid $cl-pink;
-              border-radius: 50%;
-
-              font-size: $fs-lg;
-              width: 50px;
-              height: 50px;
-              line-height: 40px;
-              text-align: center;
-            }
-          }
-        }
-      }
-    }
     .end-nav {
       justify-content: end;
       a:first-child {
@@ -243,6 +83,139 @@ $cl-pink: #ff385c;
             background-color: $cl-pink;
             color: $cl-white;
             transition: 0.2s linear;
+          }
+        }
+      }
+    }
+  }
+}
+.options {
+  padding: 80px 0;
+  display: block;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 0;
+  &__container {
+    width: 50%;
+    margin: 0 auto;
+    @media all and (max-width: 1200px) {
+      width: 60%;
+    }
+    @media all and (max-width: 960px) {
+      width: 70%;
+    }
+    @media all and (max-width: 768px) {
+      width: 80%;
+    }
+    @media all and (max-width: 640px) {
+      width: 90%;
+    }
+    @media all and (max-width: 576px) {
+      width: 100%;
+    }
+    .border {
+      flex: 0 0 1px;
+      height: 24px;
+      width: 1px;
+    }
+    .search {
+      display: block;
+      &__content {
+        border: 1px solid $cl-gray;
+        background-color: $cl-white;
+        border-radius: 30px;
+
+        display: flex;
+        justify-content: space-around;
+        padding: 5px 20px;
+        align-items: center;
+        &__item {
+          text-align: start;
+          border-right: 1px solid $cl-gray;
+          line-height: 15px;
+          padding: 0 10px;
+          @media all and (max-width: 300px) {
+            border: none;
+            width: 100%;
+          }
+          label {
+            font-size: $fs-xs;
+            font-weight: bold;
+            width: 100%;
+            @media all and (max-width: 576px) {
+              font-size: $fs-xxs;
+            }
+          }
+          input {
+            width: 100%;
+            border: none;
+            font-size: $fs-xs;
+            @media all and (max-width: 576px) {
+              font-size: $fs-xxs;
+
+              input::placeholder {
+                font-size: $fs-xxs;
+              }
+            }
+            &:focus {
+              outline: none;
+            }
+          }
+          &__locations {
+            position: relative;
+            .dropdown {
+              position: absolute;
+
+              max-height: 250px;
+              overflow-x: hidden;
+              visibility: hidden;
+              left: -20px;
+              top: 150%;
+              z-index: 10;
+
+              background-color: $cl-white;
+              border-radius: 20px;
+              box-shadow: 5px 5px 5px 5px rgb(0 0 0 / 8%),
+                6px 4px 12px rgb(0 0 0 / 5%);
+              &.v {
+                visibility: visible;
+              }
+              &__item {
+                display: flex;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+        .res-item {
+          @media all and (max-width: 300px) {
+            display: none;
+          }
+        }
+
+        .last-item {
+          border: none;
+        }
+
+        .btn-roomSearch {
+          background-color: $cl-pink;
+          color: $cl-white;
+
+          border: 1px solid $cl-pink;
+          border-radius: 50%;
+
+          font-size: $fs-lg;
+          width: 30px;
+          height: 30px;
+          line-height: 20px;
+          text-align: center;
+          svg {
+            font-size: $fs-md;
+          }
+          @media all and (max-width: 576px) {
+            width: 20px;
+            height: 20px;
+            line-height: 10px;
           }
         }
       }

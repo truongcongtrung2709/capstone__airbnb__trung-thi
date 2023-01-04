@@ -6,6 +6,7 @@ const RentList = () => {
   let { maViTri } = useParams();
   const [locationDetails, setLocationDetails] = useState([]);
   const navigate = useNavigate();
+
   useEffect(() => {
     (async () => {
       try {
@@ -35,16 +36,16 @@ const RentList = () => {
           <div className="room-list">
             {locationDetails.map((room) => (
               <div
-                className="room"
+                className="room row"
                 key={room.id}
                 onClick={() => {
                   handleClickRoom(room);
                 }}
               >
-                <div className="room__img">
+                <div className="room__img col-lg-2">
                   <img src={room.hinhAnh} alt={room.id} />
                 </div>
-                <div className="room__info">
+                <div className="room__info col-lg-10">
                   <h2>{room.tenPhong}</h2>
                   <p className="details">
                     {room.khach} khách - {room.phongNgu} phòng ngủ -

@@ -18,9 +18,6 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  // show search bar
-  const [isActive, setIsActive] = useState(false);
-  const [showBar, setShowBar] = useState(false);
   //dropdown search
   const [visible, setVisible] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -34,10 +31,6 @@ const Header = () => {
       setLocations(data);
     })();
   }, []);
-  const handleIsActive = () => {
-    setIsActive((current) => !current);
-    setShowBar((current) => !current);
-  };
 
   const handleChangeLocations = (e) => {
     setSearchValue(e.target.value);
@@ -72,7 +65,9 @@ const Header = () => {
     setVisible(false);
   };
 
-  // const handleSearch = () => {};
+  const handleSearch = () => {
+    navigate(`/rentlist/${selectedItemId}`);
+  };
   const Logged = () => {
     return (
       <Dropdown.Menu>
@@ -101,7 +96,7 @@ const Header = () => {
     <>
       <Navbar fixed="top">
         <div className="header__container">
-          <div className="col-4 ">
+          <div className="col-6 ">
             <Navbar.Brand href="/">
               <img
                 className="img-logo"
@@ -112,111 +107,8 @@ const Header = () => {
               />
             </Navbar.Brand>
           </div>
-          <Nav className="me-auto options col-4 ">
-            <div className="options__title">
-              <div
-                className="options__detail"
-                style={{ display: isActive ? "none" : "" }}
-                onClick={handleIsActive}
-              >
-                <Nav.Link href="#">Địa điểm bất kỳ</Nav.Link>
-                <span className="border"></span>
-                <Nav.Link href="#">Tuần bất kỳ</Nav.Link>
-                <span className="border"></span>
-                <Nav.Link href="#">
-                  Thêm khách
-                  <div className="search__btn">
-                    <GrFormSearch />
-                  </div>
-                </Nav.Link>
-              </div>
-            </div>
-            {/* Hiding Search */}
-            <div
-              className="hiding-search"
-              style={{ display: showBar ? "block" : "" }}
-            >
-              <div className="options_show">
-                <Nav.Link href="#">Chỗ ở</Nav.Link>
-                <Nav.Link href="#">Trải nghiệm</Nav.Link>
-                <Nav.Link href="#">Trải nghiệm trực tuyến</Nav.Link>
-              </div>
-              <div className="search">
-                <form className="search__content">
-                  <div className="search__content__item search__content__item__locations col-4">
-                    <label>Địa điểm</label>
-                    <input
-                      type="text"
-                      placeholder="Tìm kiếm tỉnh thành"
-                      onChange={handleChangeLocations}
-                      onClick={handleClickInput}
-                      value={searchValue}
-                      onFocus={() => {
-                        // if (searchValue) {
-                        setVisible(true);
-                        // };
-                      }}
-                    />
-                    {/* locations value dropdown */}
-                    <div
-                      ref={dropdownRef}
-                      className={`dropdown ${visible ? "v" : ""} `}
-                    >
-                      {visible && (
-                        <ul>
-                          {!locations && (
-                            <li key="none" className="dropdown__item">
-                              no result
-                            </li>
-                          )}
-                          {locations &&
-                            searchFilter(searchValue, locations).map((item) => (
-                              <li
-                                key={item.id}
-                                className="dropdown__item"
-                                onClick={() => selectItem(item)}
-                              >
-                                <MdLocationOn />
-                                <p>
-                                  {item.tenViTri}, {item.tinhThanh},
-                                  {item.quocGia}
-                                </p>
-                              </li>
-                            ))}
-                        </ul>
-                      )}
-                    </div>
-                  </div>
 
-                  <div className=" search__content__item col-3">
-                    <label>Nhận phòng</label>
-                    <input type="text" placeholder="Thêm ngày" />
-                  </div>
-                  <div className=" search__content__item col-2">
-                    <label htmlFor="">Trả phòng</label>
-                    <input type="text" placeholder="Thêm ngày" />
-                  </div>
-                  <div className="last-item search__content__item col-2">
-                    <label htmlFor="">Khách</label>
-                    <input type="text" placeholder="Thêm khách" />
-                  </div>
-                  <Link
-                    to={`/rentlist/${selectedItemId}`}
-                    state={{ selectedItem: selectedItem }}
-                    className="btn-roomSearch col-1"
-                    // onClick={handleSearch}
-                  >
-                    <span className="search-icon">
-                      <AiOutlineSearch />
-                    </span>
-                  </Link>
-                </form>
-              </div>
-            </div>
-          </Nav>
-          <Nav className="me-auto end-nav col-4">
-            
-            
+          <Nav className="me-auto end-nav col-6">
             <Dropdown>
               <Dropdown.Toggle>
                 <HiMenu className="toggle" />
@@ -227,6 +119,80 @@ const Header = () => {
           </Nav>
         </div>
       </Navbar>
+      <div className="me-auto options ">
+        <div className="options__container">
+          <div className="search">
+            <form className="search__content">
+              <div className="search__content__item search__content__item__locations col-4">
+                <label>Địa điểm</label>
+                <input
+                  type="text"
+                  placeholder="Tìm kiếm tỉnh thành"
+                  onChange={handleChangeLocations}
+                  onClick={handleClickInput}
+                  value={searchValue}
+                  onFocus={() => {
+                    // if (searchValue) {
+                    setVisible(true);
+                    // };
+                  }}
+                />
+                {/* locations value dropdown */}
+                <div
+                  ref={dropdownRef}
+                  className={`dropdown ${visible ? "v" : ""} `}
+                >
+                  {visible && (
+                    <ul>
+                      {!locations && (
+                        <li key="none" className="dropdown__item">
+                          no result
+                        </li>
+                      )}
+                      {locations &&
+                        searchFilter(searchValue, locations).map((item) => (
+                          <li
+                            key={item.id}
+                            className="dropdown__item"
+                            onClick={() => selectItem(item)}
+                          >
+                            <MdLocationOn />
+                            <p>
+                              {item.tenViTri}, {item.tinhThanh},{item.quocGia}
+                            </p>
+                          </li>
+                        ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
+
+              <div className=" search__content__item res-item col-3">
+                <label>Nhận phòng</label>
+                <input type="text" placeholder="Thêm ngày" />
+              </div>
+              <div className=" search__content__item res-item col-2">
+                <label htmlFor="">Trả phòng</label>
+                <input type="text" placeholder="Thêm ngày" />
+              </div>
+              <div className="last-item search__content__item res-item col-2">
+                <label htmlFor="">Khách</label>
+                <input type="text" placeholder="Thêm khách" />
+              </div>
+              <div
+                // to={`/rentlist/${selectedItemId}`}
+                // state={{ selectedItem: selectedItem }}
+                className="btn-roomSearch col-1"
+                onClick={handleSearch}
+              >
+                <span className="search-icon">
+                  <AiOutlineSearch />
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

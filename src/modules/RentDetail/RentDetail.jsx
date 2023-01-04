@@ -97,8 +97,8 @@ const RentDetail = () => {
             </div>
             <img src={room.hinhAnh} alt={room.tenPhong} width="100%" />
           </div>
-          <div className="room__container__content__des-booking">
-            <div className="des">
+          <div className="room__container__content__des-booking row">
+            <div className="des col-lg-6">
               <div className="des-owner">
                 <div className="des-owner__left">
                   <h2 className="des-owner__left__title">

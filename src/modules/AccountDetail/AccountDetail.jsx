@@ -21,7 +21,6 @@ const AccountDetail = () => {
   const handleShow = () => {
     setShowEditModal(true);
   };
-  console.log(roomDetails);
   useEffect(() => {
     (async () => {
       try {
@@ -70,7 +69,6 @@ const AccountDetail = () => {
       fileReader.onload = (evt) => {
         setImgPreview(evt.target.result);
       };
-      console.log(fileObj);
       const formData = new FormData();
       formData.append("formFile", fileObj);
       await usersAPI.uploadAvatar(formData);
@@ -84,7 +82,7 @@ const AccountDetail = () => {
     <div className="account">
       <div className="account__container">
         <div className="account__content row">
-          <div className="account__detail col-3">
+          <div className="account__detail col-lg-3">
             <div className="avatar">
               <div className="avatar__pic">
                 {!userDetails.avatar ? (
@@ -128,7 +126,7 @@ const AccountDetail = () => {
               </span>
             </div>
           </div>
-          <div className="account__rooms col-9">
+          <div className="account__rooms col-lg-9">
             <h2>Xin chào, tôi là {userDetails.name}</h2>
             <p>Bắt đầu tham gia vào 2022</p>
             <button

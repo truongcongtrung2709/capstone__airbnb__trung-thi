@@ -45,7 +45,7 @@ const Locations = () => {
                   // }}
                   onClick={() => handleOnLocationClick(location.id)}
                   key={location.id}
-                  className="card col-3"
+                  className="card col-lg-3 col-md-6"
                 >
                   <Card.Body>
                     <div className="card__img">
@@ -66,19 +66,19 @@ const Locations = () => {
             <h3>Ờ bất cứ đâu</h3>
           </div>
           <div className="everywhere__list row">
-            <div className="everywhere__item col-3">
+            <div className="everywhere__item col-lg-3 col-md-6">
               <img src={house} alt="" />
               <h5>Toàn bộ nhà</h5>
             </div>
-            <div className="everywhere__item col-3">
+            <div className="everywhere__item col-lg-3 col-md-6">
               <img src={sea} alt="" />
               <h5>Chổ ở độc đáo</h5>
             </div>
-            <div className="everywhere__item col-3">
+            <div className="everywhere__item col-lg-3 col-md-6">
               <img src={farm} alt="" />
               <h5>Trang trại và thiên nhiên</h5>
             </div>
-            <div className="everywhere__item col-3">
+            <div className="everywhere__item col-lg-3 col-md-6">
               <img src={pet} alt="" />
               <h5>Cho phép mang theo thú cưng</h5>
             </div>

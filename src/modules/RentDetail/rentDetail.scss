@@ -60,11 +60,7 @@ $cl-pink: #ff385c;
         }
       }
       &__des-booking {
-        display: flex;
-        width: 100%;
         .des {
-          width: 60%;
-
           &-owner {
             display: flex;
             align-items: center;
@@ -88,7 +84,6 @@ $cl-pink: #ff385c;
           }
         }
         .booking {
-          width: 40%;
         }
       }
       &__comments {
