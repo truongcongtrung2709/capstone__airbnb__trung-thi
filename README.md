@@ -4,6 +4,9 @@ Link Phân chia công việc : https://docs.google.com/spreadsheets/d/1ZuZ4SSv4l
 
 Link Deploy: https://capstone-airbnb-trung-thi.vercel.app/
 
+Link Youtube: https://youtu.be/OiyAcYXEcQA
+
+
 Source Admin: https://github.com/Cong-Thi/Admin-Booking
 
 Link Admin: https://admin-booking-wheat.vercel.app/
