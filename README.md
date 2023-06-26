@@ -8,6 +8,10 @@ Source Admin: https://github.com/Cong-Thi/Admin-Booking
 
 Link Admin: https://admin-booking-wheat.vercel.app/
 
+Account to Login:
+email: truongcongtrung2709@gmail.com
+pass: tct2709123
+
 
 
 ### libraries
