@@ -43,6 +43,7 @@ const Total = ({ room }) => {
           maNguoiDung: user.user.id,
         };
         console.log(newValues);
+        alert("Đặt Phòng Thành Công");
         await roomsAPI.postPaidRoom(newValues);
       }
     } catch (error) {
