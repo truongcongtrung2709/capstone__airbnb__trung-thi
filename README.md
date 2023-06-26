@@ -1,10 +1,18 @@
-Link YouTube: https://www.youtube.com/watch?v=b1fWKdxOTeU&ab_channel=TrungTr%C6%B0%C6%A1ng
+
 
 Link Phân chia công việc : https://docs.google.com/spreadsheets/d/1ZuZ4SSv4lqGodxjKHq5E3J_dXIpLtgvYUmkFF12sW6U/edit#gid=0
 
 Link Deploy: https://capstone-airbnb-trung-thi.vercel.app/
 
-Link Admin: https://github.com/Cong-Thi/Admin-Booking
+Source Admin: https://github.com/Cong-Thi/Admin-Booking
+
+Link Admin: https://admin-booking-wheat.vercel.app/
+
+Account to Login:
+email: truongcongtrung2709@gmail.com
+pass: tct2709123
+
+
 
 ### libraries
 
